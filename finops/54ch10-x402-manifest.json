@@ -1,0 +1,184 @@
+{
+  "x402Version": 2,
+  "name": "54ch10 Brief API — wallet phishing scam URL risk briefs",
+  "summary": "Pre-interact JSON risk briefs for wallets, tokens, and URLs: phishing, scam, honeypot, and URL-reputation heuristics before agents sign or connect. Analytics-only — not financial, legal, or investment advice.",
+  "homepage": "https://54ch10.uk",
+  "network": "base",
+  "facilitator": "payai",
+  "facilitatorUrl": "https://facilitator.payai.network",
+  "payTo": "0xF9eb0Caa13B78f92E2850bf5961eB9736354aA3d",
+  "payToSolana": "EcGUGSda9VNzYgUmYA8mTg88MhNYeyA5tgaCgwzxfFNs",
+  "currency": "USDC",
+  "protocol": "x402",
+  "openapi": "https://54ch10.uk/openapi.json",
+  "agent": "https://54ch10.uk/AGENT.md",
+  "mcp": {
+    "package": "54ch10-mcp",
+    "path": "/mcp",
+    "note": "Local stdio MCP wrapper in repo mcp/; remote MCP not required for x402 HTTP path."
+  },
+  "freeTier": {
+    "limit": 20,
+    "unit": "briefs/UTC-day/IP",
+    "path": "/v1/brief/free",
+    "header": "X-54ch10-Free: 1",
+    "note": "Canonical GET /v1/brief always returns HTTP 402 + PAYMENT-REQUIRED for unauthenticated agents/indexers. Humans/demos: GET /v1/brief/free or header X-54ch10-Free: 1 (20/UTC-day/IP). Bearer 54k_ or PAYMENT-SIGNATURE unlock /v1/brief."
+  },
+  "stripe": {
+    "note": "Human monthly plans still available via Stripe Checkout / Bearer 54k_ keys.",
+    "landing": "https://54ch10.uk"
+  },
+  "disclaimer": "Informational tooling only. Not financial advice. No custody, trading, or token promotion. Scores are imperfect heuristics — verify independently.",
+  "services": [
+    {
+      "method": "GET",
+      "path": "/v1/brief",
+      "description": "Pre-interact risk brief (phishing/scam/wallet/url reputation heuristics). Query: type=address|token|url&q=…. Unauthenticated → HTTP 402 + PAYMENT-REQUIRED (USDC $0.01). Auth: Bearer 54k_ or PAYMENT-SIGNATURE. Demo free: /v1/brief/free or X-54ch10-Free: 1.",
+      "amount": "0.01",
+      "amountAtomic": "10000",
+      "networks": [
+        "eip155:8453",
+        "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp"
+      ],
+      "discoverable": true,
+      "extensions": {
+        "bazaar": {
+          "info": {
+            "input": {
+              "type": "http",
+              "method": "GET",
+              "queryParams": {
+                "type": "url",
+                "q": "https://example.com"
+              }
+            },
+            "output": {
+              "type": "json",
+              "example": {
+                "ok": true,
+                "type": "url",
+                "q": "https://example.com",
+                "score": 12,
+                "band": "clear",
+                "flags": [],
+                "summary": "No elevated phishing or on-chain risk signals in free live sources.",
+                "sources": [
+                  {
+                    "id": "openphish",
+                    "label": "OpenPhish",
+                    "status": "live"
+                  }
+                ],
+                "tier": "x402",
+                "disclaimer": "Informational tooling only. Not financial advice. No custody, trading, or token promotion."
+              }
+            }
+          },
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "properties": {
+              "input": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "http"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "GET",
+                      "HEAD",
+                      "DELETE"
+                    ]
+                  },
+                  "queryParams": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "address",
+                          "token",
+                          "url"
+                        ],
+                        "description": "What to brief"
+                      },
+                      "q": {
+                        "type": "string",
+                        "description": "Address, token id/symbol, or URL"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "q"
+                    ]
+                  },
+                  "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "type",
+                  "method"
+                ],
+                "additionalProperties": false
+              },
+              "output": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "example": {
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            },
+            "required": [
+              "input"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/v1/brief/free",
+      "description": "Human/demo free tier of the same brief (20/UTC-day/IP). Not the discovery/payment route — indexers should use /v1/brief.",
+      "amount": "0",
+      "discoverable": false
+    }
+  ],
+  "payment": {
+    "x402": {
+      "version": 2,
+      "currency": "USDC",
+      "primaryNetwork": "base",
+      "networks": [
+        "base",
+        "solana"
+      ],
+      "pricePerBriefUsd": "0.01",
+      "payTo": "0xF9eb0Caa13B78f92E2850bf5961eB9736354aA3d",
+      "payToSolana": "EcGUGSda9VNzYgUmYA8mTg88MhNYeyA5tgaCgwzxfFNs",
+      "facilitatorUrl": "https://facilitator.payai.network",
+      "challengeHeaders": [
+        "PAYMENT-REQUIRED",
+        "PAYMENT-SIGNATURE",
+        "PAYMENT-RESPONSE"
+      ],
+      "optInHeader": "X-54ch10-Pay: x402 (legacy force-challenge; canonical /v1/brief already 402s)",
+      "freeHeader": "X-54ch10-Free: 1"
+    }
+  },
+  "fundingNote": "Receive-only: payTo wallets do not need pre-funding to accept USDC. PayAI facilitator sponsors gas on settle. Optional later: bridge a little ETH/SOL only if self-settling."
+}

@@ -1,0 +1,81 @@
+aid: 54ch10
+name: 54ch10
+description: >-
+  54ch10 serves pre-interact risk briefs for wallet addresses, tokens and URLs — phishing, scam,
+  honeypot and URL-reputation heuristics an agent can call BEFORE it signs, approves, bridges or
+  opens a dapp URL. A brief returns a 0–100 score where higher is more concerning, a band, flags,
+  a summary and the sources behind it, so a caller can gate its next tool call on policy: refuse
+  on critical, require human confirmation on elevated. The provider describes it as analytics-only
+  and explicitly not financial, legal or investment advice. Four operations over OpenAPI 3.0,
+  bearer authenticated, with a free tier and an x402 machine-payment surface on Base.
+type: Index
+url: https://raw.githubusercontent.com/api-evangelist/54ch10/refs/heads/main/apis.yml
+created: '2026-08-24'
+modified: '2026-08-24'
+specificationVersion: '0.23'
+tags:
+- Security
+- Risk
+- Wallets
+- Phishing
+- Blockchain
+- Agents
+- x402
+- Machine Payments
+tags_raw:
+- wallet risk
+- phishing
+- scam detection
+- url reputation
+- x402
+apis:
+- aid: 54ch10:54ch10-brief-api
+  name: 54ch10 Brief API
+  description: >-
+    Pre-interact risk briefs for addresses, tokens and URLs. GET /v1/brief and a free tier at
+    /v1/brief/free, plus /health and an x402 discovery document. Bearer authenticated.
+  humanURL: https://54ch10.uk/AGENT.md
+  baseURL: https://54ch10.uk
+  tags:
+  - Security
+  - Risk
+  - Wallets
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-brief-api-openapi.yml
+  - type: APIReference
+    url: https://54ch10.uk/openapi.json
+  - type: Documentation
+    url: authentication/54ch10-agent.md
+  - type: FinOps
+    url: finops/54ch10-x402-manifest.json
+common:
+- type: Website
+  url: https://54ch10.uk/
+- type: FinOps
+  url: finops/54ch10-x402-manifest.json
+- type: Documentation
+  url: authentication/54ch10-agent.md
+maintainers:
+- FN: 54ch10
+  email: 54ch10.brief@gmail.com
+  url: https://54ch10.uk/
+x-provenance:
+  added: '2026-08-24'
+  method: searched
+  source: https://54ch10.uk/openapi.json
+  note: >-
+    Submitted via apis.io/add on 2026-08-24 and auto-published by the gate at rating 37. The
+    submitted APIs.json at https://54ch10.uk/apis.json returns 404 against a control that also
+    404s with an identical 531-byte JSON body, so the 404 is real — a bad pointer in the
+    submission, not an absent surface. There is no llms.txt either.
+    What IS served was fetched and confirmed: OpenAPI 3.0.3 at /openapi.json (4 paths, bearer
+    auth, though zero component schemas), an AGENT.md written directly at agents rather than at
+    humans, and an x402 discovery document at /.well-known/x402 declaring x402Version 2 on the
+    Base network with the payai facilitator. /health returns 200 JSON. Both brief endpoints return
+    400 JSON on a malformed call, which is validation rather than a stub.
+    The AGENT.md is the interesting artifact: it tells a calling agent the order of operations —
+    resolve the target, GET /v1/brief, then gate the next tool call on the returned band — and
+    tells operators to log cached_at and sources[].status so they can tell a stub signal from a
+    live one. It is kept here in full.
+    Note the brand: the provider states it is "54ch10", NOT "SACHIO".
