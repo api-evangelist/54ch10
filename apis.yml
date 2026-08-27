@@ -32,8 +32,8 @@ apis:
 - aid: 54ch10:54ch10-brief-api
   name: 54ch10 Brief API
   description: >-
-    Pre-interact risk briefs for addresses, tokens and URLs. GET /v1/brief and a free tier at
-    /v1/brief/free, plus /health and an x402 discovery document. Bearer authenticated.
+    Pre-interact risk briefs for addresses, tokens and URLs. GET /v1/brief and a free tier at /v1/brief/free,
+    plus /health and an x402 discovery document. Bearer authenticated.
   humanURL: https://54ch10.uk/AGENT.md
   baseURL: https://54ch10.uk
   tags:
@@ -49,6 +49,26 @@ apis:
     url: authentication/54ch10-agent.md
   - type: FinOps
     url: finops/54ch10-x402-manifest.json
+- aid: 54ch10:54ch10-health-api
+  name: 54ch10 Health API
+  description: The Health API from 54ch10 — 1 operation(s) for health.
+  humanURL: https://54ch10.uk/AGENT.md
+  baseURL: https://54ch10.uk
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-health-api-openapi.yml
+- aid: 54ch10:54ch10-well-known-api
+  name: 54ch10 .well Known API
+  description: The .well Known API from 54ch10 — 1 operation(s) for .well known.
+  humanURL: https://54ch10.uk/AGENT.md
+  baseURL: https://54ch10.uk
+  tags:
+  - .well Known
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-well-known-api-openapi.yml
 common:
 - type: Website
   url: https://54ch10.uk/
