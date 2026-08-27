@@ -3,14 +3,14 @@ kin_checks:
   slug: 54ch10
   schema_version: 0.15.1
   scored_at: '2026-08-27'
-  run_ts: 2026-08-27T103455
+  run_ts: 2026-08-27T140727
   note: Actionable checks only (missed + partial). earned/na are every other check
     in rubric/scoring-0.15.1.yml; counts below let you verify that.
   counts:
     total: 130
-    earned: 24
+    earned: 26
     partial: 1
-    missed: 84
+    missed: 82
     na: 21
   checks:
   - id: image_present
@@ -27,12 +27,6 @@ kin_checks:
     status: missed
     detail: 0 of 1 openapi documents pass
   - id: openapi_3_1
-    status: missed
-    detail: 0 of 1 openapi documents pass
-  - id: operations_description_coverage
-    status: missed
-    detail: 0 of 1 openapi documents pass
-  - id: operations_tagged
     status: missed
     detail: 0 of 1 openapi documents pass
   - id: examples_present
