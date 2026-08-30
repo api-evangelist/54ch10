@@ -1,0 +1,53 @@
+openapi: 3.2.0
+info:
+  title: 54ch10 Brief .well Known .well Known API
+  description: 'Pre-interact JSON briefs for EVM addresses, tokens, and URLs (phishing/scam/wallet/URL-reputation heuristics). Analytics-only — not financial, legal, or investment advice. Canonical GET /v1/brief returns HTTP 402 + x402 PAYMENT-REQUIRED (USDC $0.01 Base preferred) unless Bearer 54k_ or PAYMENT-SIGNATURE. Demo free: X-54ch10-Free: 1 or GET /v1/brief/free (20/day/IP). Discovery: GET /.well-known/x402.'
+  version: 0.4.1
+  contact:
+    name: 54ch10
+    url: https://54ch10.uk
+    email: brainpowerux@gmail.com
+  license:
+    name: Proprietary
+    url: https://54ch10.uk/LEGAL_DISCLAIMER.txt
+  x-apisguru-categories:
+  - security
+  - cryptocurrency
+  x-logo:
+    url: https://54ch10.uk/favicon.ico
+  x-x402:
+    discovery: https://54ch10.uk/.well-known/x402
+    priceUsd: '0.01'
+    networks:
+    - eip155:8453
+    - solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp
+    payToEvm: '0xF9eb0Caa13B78f92E2850bf5961eB9736354aA3d'
+    payToSolana: EcGUGSda9VNzYgUmYA8mTg88MhNYeyA5tgaCgwzxfFNs
+    facilitator: https://facilitator.payai.network
+servers:
+- url: https://54ch10.uk
+  description: Production
+tags:
+- name: .well Known
+paths:
+  /.well-known/x402:
+    get:
+      operationId: getX402Discovery
+      summary: x402 service discovery manifest
+      description: 'Machine-readable x402 manifest for agent402.tools / bazaar indexers. Alias: /.well-known/x402.json'
+      responses:
+        '200':
+          description: Discovery JSON
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - .well Known
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: 54k_
+      description: Optional paid API key (54k_…). Alternatively pay per call with x402 USDC.
