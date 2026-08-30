@@ -25,14 +25,11 @@ created: '2026-08-24'
 modified: '2026-08-24'
 specificationVersion: '0.23'
 tags:
-- Security
-- Risk
-- Wallets
-- Phishing
-- Blockchain
-- Agents
+- wallet risk
+- phishing
+- scam detection
+- url reputation
 - x402
-- Machine Payments
 tags_raw:
 - wallet risk
 - phishing
