@@ -25,9 +25,9 @@ created: '2026-08-24'
 modified: '2026-08-24'
 specificationVersion: '0.23'
 tags:
-- wallet risk
-- phishing
-- scam detection
+- wallet-risk
+- Phishing
+- Scam Detection
 - url reputation
 - x402
 tags_raw:
