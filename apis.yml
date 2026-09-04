@@ -21,6 +21,17 @@ deliveryModel:
   - openapi
   generated: '2026-08-28'
   method: derived
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-09-02'
+  method: derived
 created: '2026-08-24'
 modified: '2026-08-24'
 specificationVersion: '0.23'
