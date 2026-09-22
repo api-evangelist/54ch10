@@ -36,7 +36,7 @@ created: '2026-08-24'
 modified: '2026-08-24'
 specificationVersion: '0.23'
 tags:
-- wallet-risk
+- Wallet Risk
 - Phishing
 - Scam Detection
 - url reputation
@@ -47,6 +47,7 @@ tags_raw:
 - scam detection
 - url reputation
 - x402
+- wallet-risk
 apis:
 - aid: 54ch10:54ch10-brief-api
   name: 54ch10 Brief API
