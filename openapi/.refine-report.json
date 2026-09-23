@@ -1,0 +1,31 @@
+{
+  "provider": "54ch10",
+  "sources": [
+    "_original/54ch10-openapi.json"
+  ],
+  "outputs": [
+    "54ch10-well-known-api-openapi.yml",
+    "54ch10-brief-api-openapi.yml",
+    "54ch10-health-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "54ch10-openapi.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "54ch10-openapi.json: tagged paths GET /v1/brief -> Brief",
+    "54ch10-openapi.json: tagged paths GET /v1/brief/free -> Brief",
+    "54ch10-openapi.json: tagged paths GET /.well-known/x402 -> .well Known",
+    "54ch10-openapi.json: tagged paths GET /health -> Health",
+    "54ch10-openapi.json: declared missing tag: .well Known",
+    "54ch10-openapi.json: declared missing tag: Brief",
+    "54ch10-openapi.json: declared missing tag: Health",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "54ch10-brief-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "54ch10-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "54ch10-well-known-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

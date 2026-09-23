@@ -1,10 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: 54ch10 Brief API
-  description: 'Pre-interact JSON briefs for EVM addresses, tokens, and URLs (phishing/scam/wallet/URL-reputation
-    heuristics). Analytics-only — not financial, legal, or investment advice. Canonical GET /v1/brief
-    returns HTTP 402 + x402 PAYMENT-REQUIRED (USDC $0.01 Base preferred) unless Bearer 54k_ or PAYMENT-SIGNATURE.
-    Demo free: X-54ch10-Free: 1 or GET /v1/brief/free (20/day/IP). Discovery: GET /.well-known/x402.'
+  description: 'Pre-interact JSON briefs for EVM addresses, tokens, and URLs (phishing/scam/wallet/URL-reputation heuristics). Analytics-only — not financial, legal, or investment advice. Canonical GET /v1/brief returns HTTP 402 + x402 PAYMENT-REQUIRED (USDC $0.01 Base preferred) unless Bearer 54k_ or PAYMENT-SIGNATURE. Demo free: X-54ch10-Free: 1 or GET /v1/brief/free (20/day/IP). Discovery: GET /.well-known/x402.'
   version: 0.4.1
   contact:
     name: 54ch10
@@ -30,15 +27,14 @@ info:
 servers:
 - url: https://54ch10.uk
   description: Production
+tags:
+- name: Brief
 paths:
   /v1/brief:
     get:
       operationId: getBrief
       summary: Pre-interact risk brief
-      description: 'Returns score (0–100, higher = more concerning), band, flags, summary, and sources[].
-        Live signals may include OpenPhish (URLs) and eth_getCode (EVM). Not clearance. Unauthenticated
-        requests return HTTP 402 with x402 PAYMENT-REQUIRED (USDC $0.01). Paid retry: PAYMENT-SIGNATURE.
-        Stripe: Bearer 54k_. Demo free: X-54ch10-Free: 1 or use /v1/brief/free.'
+      description: 'Returns score (0–100, higher = more concerning), band, flags, summary, and sources[]. Live signals may include OpenPhish (URLs) and eth_getCode (EVM). Not clearance. Unauthenticated requests return HTTP 402 with x402 PAYMENT-REQUIRED (USDC $0.01). Paid retry: PAYMENT-SIGNATURE. Stripe: Bearer 54k_. Demo free: X-54ch10-Free: 1 or use /v1/brief/free.'
       parameters:
       - name: type
         in: query
@@ -135,8 +131,7 @@ paths:
         '401':
           description: Invalid API key
         '402':
-          description: 'Payment Required (x402) — default for unauthenticated /v1/brief. Decode PAYMENT-REQUIRED
-            (base64 JSON) for accepts[] and extensions.bazaar. Or Bearer 54k_ / X-54ch10-Free: 1 / /v1/brief/free.'
+          description: 'Payment Required (x402) — default for unauthenticated /v1/brief. Decode PAYMENT-REQUIRED (base64 JSON) for accepts[] and extensions.bazaar. Or Bearer 54k_ / X-54ch10-Free: 1 / /v1/brief/free.'
           headers:
             PAYMENT-REQUIRED:
               description: Base64-encoded x402 v2 PaymentRequired
@@ -147,12 +142,13 @@ paths:
       security:
       - {}
       - bearerAuth: []
+      tags:
+      - Brief
   /v1/brief/free:
     get:
       operationId: getBriefFree
       summary: Demo free pre-interact risk brief
-      description: Same brief JSON as /v1/brief but on the explicit free path (20/UTC-day/IP). Not for
-        agent discovery — indexers must use GET /v1/brief which returns 402.
+      description: Same brief JSON as /v1/brief but on the explicit free path (20/UTC-day/IP). Not for agent discovery — indexers must use GET /v1/brief which returns 402.
       parameters:
       - name: type
         in: query
@@ -176,25 +172,8 @@ paths:
           description: Free quota exhausted — pay via x402 on /v1/brief or subscribe
         '429':
           description: Rate limited when x402 disabled
-  /.well-known/x402:
-    get:
-      operationId: getX402Discovery
-      summary: x402 service discovery manifest
-      description: 'Machine-readable x402 manifest for agent402.tools / bazaar indexers. Alias: /.well-known/x402.json'
-      responses:
-        '200':
-          description: Discovery JSON
-          content:
-            application/json:
-              schema:
-                type: object
-  /health:
-    get:
-      operationId: getHealth
-      summary: Health check
-      responses:
-        '200':
-          description: OK
+      tags:
+      - Brief
 components:
   securitySchemes:
     bearerAuth:

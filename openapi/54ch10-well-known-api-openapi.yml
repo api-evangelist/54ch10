@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: 54ch10 Brief .well Known .well Known API
+  title: 54ch10 Brief .well Known API
   description: 'Pre-interact JSON briefs for EVM addresses, tokens, and URLs (phishing/scam/wallet/URL-reputation heuristics). Analytics-only — not financial, legal, or investment advice. Canonical GET /v1/brief returns HTTP 402 + x402 PAYMENT-REQUIRED (USDC $0.01 Base preferred) unless Bearer 54k_ or PAYMENT-SIGNATURE. Demo free: X-54ch10-Free: 1 or GET /v1/brief/free (20/day/IP). Discovery: GET /.well-known/x402.'
   version: 0.4.1
   contact:
