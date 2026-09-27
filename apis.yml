@@ -55,8 +55,11 @@ apis:
     Pre-interact risk briefs for addresses, tokens and URLs. GET /v1/brief and a free tier at /v1/brief/free,
     plus /health and an x402 discovery document. Bearer authenticated.
   humanURL: https://54ch10.uk/AGENT.md
-  baseURL: https://54ch10.uk
   tags:
+  - Security
+  - Risk Management
+  - Wallets
+  tags_raw:
   - Security
   - Risk
   - Wallets
@@ -73,7 +76,6 @@ apis:
   name: 54ch10 Health API
   description: The Health API from 54ch10 — 1 operation(s) for health.
   humanURL: https://54ch10.uk/AGENT.md
-  baseURL: https://54ch10.uk
   tags:
   - Health
   properties:
@@ -83,7 +85,6 @@ apis:
   name: 54ch10 .well Known API
   description: The .well Known API from 54ch10 — 1 operation(s) for .well known.
   humanURL: https://54ch10.uk/AGENT.md
-  baseURL: https://54ch10.uk
   tags:
   - .well Known
   properties:
@@ -119,3 +120,12 @@ x-provenance:
     tells operators to log cached_at and sources[].status so they can tell a stub signal from a
     live one. It is kept here in full.
     Note the brand: the provider states it is "54ch10", NOT "SACHIO".
+x-x402:
+  verified: true
+  probed: '2026-09-24'
+  url: "https://54ch10.uk/v1/brief"
+  evidence:
+  - "header:payment-required"
+  - "body:x402Version"
+  - "body:accepts[scheme,payTo,asset]"
+  control: 404
