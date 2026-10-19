@@ -1,11 +1,11 @@
 openapi: 3.2.0
 info:
-  title: 54ch10 Brief Health API
-  description: 'Pre-interact JSON briefs for EVM addresses, tokens, and URLs (phishing/scam/wallet/URL-reputation heuristics). Analytics-only — not financial, legal, or investment advice. Canonical GET /v1/brief returns HTTP 402 + x402 PAYMENT-REQUIRED (USDC $0.01 Base preferred) unless Bearer 54k_ or PAYMENT-SIGNATURE. Demo free: X-54ch10-Free: 1 or GET /v1/brief/free (20/day/IP). Discovery: GET /.well-known/x402.'
-  version: 0.4.1
+  title: 54ch10 /v1/open + $1 stack Health API
+  description: 'GET /v1/open — URL brief + whois + page markdown + page_risk/one-hop, $0.015 USDC on Base. Or GET /v1/stack?pack=1 for $1 prepaid (80 calls). Bulk: POST /v1/open/batch (N×$0.015, cap 25, paid-only; human https://linksafu.com/bulk). Wire: https://54ch10.uk/wire.md. Analytics-only — not financial, legal, or investment advice. Remaining toolkit: open/batch (bulk), brief, domain (whois+dns+tls), whois/RDAP, DNS, TLS/CT, URL normalize, public fetch, ephemeral paste, hash, encode. Canonical paid paths return HTTP 402 + x402 PAYMENT-REQUIRED (USDC $0.001–$100.00 Base preferred) unless Bearer 54k_ or PAYMENT-SIGNATURE. Demo free: X-54ch10-Free: 1 or GET /v1//free (5/day/IP). Discovery: GET /.well-known/x402.'
+  version: 0.8.1-bulk-slack-thin
   contact:
     name: 54ch10
-    url: https://54ch10.uk
+    url: https://54ch10.uk/wire.md
     email: brainpowerux@gmail.com
   license:
     name: Proprietary
@@ -17,7 +17,24 @@ info:
     url: https://54ch10.uk/favicon.ico
   x-x402:
     discovery: https://54ch10.uk/.well-known/x402
-    priceUsd: '0.01'
+    pricesUsd:
+      brief: '0.01'
+      whois: '0.005'
+      dns: '0.002'
+      tls: '0.005'
+      normalize-url: '0.001'
+      hash: '0.001'
+      encode: '0.001'
+      fetch: '0.005'
+      paste-write: '0.002'
+      paste-read: '0.001'
+      open: '0.015'
+      open_batch: N×0.015 (cap 25)
+      domain: '0.008'
+      stack: '1.00'
+      stack_5: '5.00'
+      stack_25: '25.00'
+      stack_100: '100.00'
     networks:
     - eip155:8453
     - solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp

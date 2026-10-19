@@ -1,0 +1,200 @@
+openapi: 3.2.0
+info:
+  title: 54ch10 /v1/ + $1 stack Open API
+  description: 'GET /v1/open — URL brief + whois + page markdown + page_risk/one-hop, $0.015 USDC on Base. Or GET /v1/stack?pack=1 for $1 prepaid (80 calls). Bulk: POST /v1/open/batch (N×$0.015, cap 25, paid-only; human https://linksafu.com/bulk). Wire: https://54ch10.uk/wire.md. Analytics-only — not financial, legal, or investment advice. Remaining toolkit: open/batch (bulk), brief, domain (whois+dns+tls), whois/RDAP, DNS, TLS/CT, URL normalize, public fetch, ephemeral paste, hash, encode. Canonical paid paths return HTTP 402 + x402 PAYMENT-REQUIRED (USDC $0.001–$100.00 Base preferred) unless Bearer 54k_ or PAYMENT-SIGNATURE. Demo free: X-54ch10-Free: 1 or GET /v1//free (5/day/IP). Discovery: GET /.well-known/x402.'
+  version: 0.8.1-bulk-slack-thin
+  contact:
+    name: 54ch10
+    url: https://54ch10.uk/wire.md
+    email: brainpowerux@gmail.com
+  license:
+    name: Proprietary
+    url: https://54ch10.uk/LEGAL_DISCLAIMER.txt
+  x-apisguru-categories:
+  - security
+  - cryptocurrency
+  x-logo:
+    url: https://54ch10.uk/favicon.ico
+  x-x402:
+    discovery: https://54ch10.uk/.well-known/x402
+    pricesUsd:
+      brief: '0.01'
+      whois: '0.005'
+      dns: '0.002'
+      tls: '0.005'
+      normalize-url: '0.001'
+      hash: '0.001'
+      encode: '0.001'
+      fetch: '0.005'
+      paste-write: '0.002'
+      paste-read: '0.001'
+      open: '0.015'
+      open_batch: N×0.015 (cap 25)
+      domain: '0.008'
+      stack: '1.00'
+      stack_5: '5.00'
+      stack_25: '25.00'
+      stack_100: '100.00'
+    networks:
+    - eip155:8453
+    - solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp
+    payToEvm: '0xF9eb0Caa13B78f92E2850bf5961eB9736354aA3d'
+    payToSolana: EcGUGSda9VNzYgUmYA8mTg88MhNYeyA5tgaCgwzxfFNs
+    facilitator: https://facilitator.payai.network
+servers:
+- url: https://54ch10.uk
+  description: Production
+tags:
+- name: Open
+paths:
+  /v1/open:
+    get:
+      operationId: getOpen
+      summary: Open URL (brief + whois + page + page_risk)
+      description: 'One paid call before opening a URL: URL brief + WHOIS domain + SSRF-safe page fetch, plus page_risk content flags and up to 3 one-hop off-host fetches (see page_risk.hops). Query q= or url=. Unauthenticated GET (including missing q) → HTTP 402 + PAYMENT-REQUIRED (USDC $0.015). Params validated after payment. Demo free: X-54ch10-Free: 1 or /free sibling.'
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          maxLength: 4096
+        description: Public http(s) URL to open
+      - name: url
+        in: query
+        required: false
+        schema:
+          type: string
+          maxLength: 4096
+        description: Alias for q
+      - $ref: '#/components/parameters/X54ch10Free'
+      - $ref: '#/components/parameters/PaymentSignature'
+      responses:
+        '200':
+          description: JSON {ok,q,url,brief,domain,page,page_risk,tier,disclaimer}. page_risk includes flags, scoreDelta, optional hops[]. Partial success if page fetch fails.
+        '400':
+          description: q is not a valid http(s) URL (after payment / free / Bearer)
+        '401':
+          description: Invalid API key
+        '402':
+          description: Payment Required (x402). Decode PAYMENT-REQUIRED for accepts[] and extensions.bazaar.
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired
+              schema:
+                type: string
+      security:
+      - {}
+      - bearerAuth: []
+      tags:
+      - Open
+  /v1/open/free:
+    get:
+      operationId: getOpenFree
+      summary: Demo free open
+      description: Demo free path (20/UTC-day/IP). Not for indexer discovery.
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: url
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: JSON result
+        '402':
+          description: Free quota exhausted
+      tags:
+      - Open
+  /v1/open/batch:
+    post:
+      operationId: postOpenBatch
+      summary: Bulk open (paid-only, cap 25)
+      description: 'Bulk URL checks — same open-class brief per URL. Body: { "urls": ["https://…"] } (aliases: q, urls_text). Cap 25. Paid-only: stack debit N credits or x402 N×$0.015 USDC on Base. Unauthenticated → HTTP 402 + PAYMENT-REQUIRED. No free tier. Human checkout: https://linksafu.com/bulk (Check bulk →).'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - urls
+              properties:
+                urls:
+                  type: array
+                  minItems: 1
+                  maxItems: 25
+                  items:
+                    type: string
+                    maxLength: 4096
+                  description: HTTP(S) URLs to open (1–25). Duplicates dropped.
+                q:
+                  type: array
+                  items:
+                    type: string
+                  description: Alias for urls
+                urls_text:
+                  type: string
+                  description: Newline/comma-separated URL list alias
+            example:
+              urls:
+              - https://example.com
+              - https://example.org
+      parameters:
+      - $ref: '#/components/parameters/PaymentSignature'
+      - name: X-54ch10-Stack
+        in: header
+        required: false
+        schema:
+          type: string
+        description: Prepaid stack id (debits N credits)
+      responses:
+        '200':
+          description: JSON {ok, count, cap, results[], tier, disclaimer}. Each result is open-class or {ok:false,error,code}.
+        '400':
+          description: empty_urls / batch_cap / bad_json (after payment / stack / Bearer)
+        '401':
+          description: Invalid API key
+        '402':
+          description: Payment Required (x402). Decode PAYMENT-REQUIRED for accepts[] and extensions.bazaar. Price = N×$0.015.
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired
+              schema:
+                type: string
+        '503':
+          description: batch_busy — global concurrency full; retry shortly
+      security:
+      - {}
+      - bearerAuth: []
+      tags:
+      - Open
+components:
+  parameters:
+    X54ch10Free:
+      name: X-54ch10-Free
+      in: header
+      required: false
+      schema:
+        type: string
+        enum:
+        - '1'
+      description: Explicit human/demo free tier opt-in (20/UTC-day/IP). Indexers must NOT send this.
+    PaymentSignature:
+      name: PAYMENT-SIGNATURE
+      in: header
+      required: false
+      schema:
+        type: string
+      description: Base64-encoded x402 v2 PaymentPayload after client signs USDC authorization
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: 54k_
+      description: Optional paid API key (54k_…). Alternatively pay per call with x402 USDC.

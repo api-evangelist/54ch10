@@ -1,0 +1,12 @@
+{
+ "url": "https://54ch10.uk/openapi.json",
+ "final": "https://54ch10.uk/openapi.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 46150,
+ "sha256": "9aa798ee9229b756501b3f0961cffcbbfad079e1dd2cd66f00a78d6b5672b6dd",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}

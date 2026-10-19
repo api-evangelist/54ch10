@@ -90,6 +90,123 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/54ch10-well-known-api-openapi.yml
+- aid: 54ch10:54ch10-dns-api
+  name: 54ch10 Dns API
+  description: The Dns API from 54ch10 — 2 operation(s) for dns.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Dns
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-dns-api-openapi.yml
+- aid: 54ch10:54ch10-domain-api
+  name: 54ch10 Domain API
+  description: The Domain API from 54ch10 — 2 operation(s) for domain.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Domain
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-domain-api-openapi.yml
+- aid: 54ch10:54ch10-encode-api
+  name: 54ch10 Encode API
+  description: The Encode API from 54ch10 — 2 operation(s) for encode.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Encode
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-encode-api-openapi.yml
+- aid: 54ch10:54ch10-feedback-api
+  name: 54ch10 Feedback API
+  description: The Feedback API from 54ch10 — 1 operation(s) for feedback.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Feedback
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-feedback-api-openapi.yml
+- aid: 54ch10:54ch10-fetch-api
+  name: 54ch10 Fetch API
+  description: The Fetch API from 54ch10 — 2 operation(s) for fetch.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Fetch
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-fetch-api-openapi.yml
+- aid: 54ch10:54ch10-hash-api
+  name: 54ch10 Hash API
+  description: The Hash API from 54ch10 — 2 operation(s) for hash.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Hash
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-hash-api-openapi.yml
+- aid: 54ch10:54ch10-normalize-url-api
+  name: 54ch10 Normalize Url API
+  description: The Normalize Url API from 54ch10 — 2 operation(s) for normalize url.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Normalize Url
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-normalize-url-api-openapi.yml
+- aid: 54ch10:54ch10-open-api
+  name: 54ch10 Open API
+  description: The Open API from 54ch10 — 3 operation(s) for open.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Open
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-open-api-openapi.yml
+- aid: 54ch10:54ch10-paste-api
+  name: 54ch10 Paste API
+  description: The Paste API from 54ch10 — 2 operation(s) for paste.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Paste
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-paste-api-openapi.yml
+- aid: 54ch10:54ch10-stack-api
+  name: 54ch10 Stack API
+  description: The Stack API from 54ch10 — 1 operation(s) for stack.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Stack
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-stack-api-openapi.yml
+- aid: 54ch10:54ch10-stats-api
+  name: 54ch10 Stats API
+  description: The Stats API from 54ch10 — 1 operation(s) for stats.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Stats
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-stats-api-openapi.yml
+- aid: 54ch10:54ch10-tls-api
+  name: 54ch10 Tls API
+  description: The Tls API from 54ch10 — 2 operation(s) for tls.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Tls
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-tls-api-openapi.yml
+- aid: 54ch10:54ch10-whois-api
+  name: 54ch10 Whois API
+  description: The Whois API from 54ch10 — 2 operation(s) for whois.
+  humanURL: https://54ch10.uk/AGENT.md
+  tags:
+  - Whois
+  properties:
+  - type: OpenAPI
+    url: openapi/54ch10-whois-api-openapi.yml
 common:
 - type: Website
   url: https://54ch10.uk/

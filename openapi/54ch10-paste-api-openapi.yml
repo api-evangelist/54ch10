@@ -1,0 +1,184 @@
+openapi: 3.2.0
+info:
+  title: 54ch10 /v1/open + $1 stack Paste API
+  description: 'GET /v1/open — URL brief + whois + page markdown + page_risk/one-hop, $0.015 USDC on Base. Or GET /v1/stack?pack=1 for $1 prepaid (80 calls). Bulk: POST /v1/open/batch (N×$0.015, cap 25, paid-only; human https://linksafu.com/bulk). Wire: https://54ch10.uk/wire.md. Analytics-only — not financial, legal, or investment advice. Remaining toolkit: open/batch (bulk), brief, domain (whois+dns+tls), whois/RDAP, DNS, TLS/CT, URL normalize, public fetch, ephemeral paste, hash, encode. Canonical paid paths return HTTP 402 + x402 PAYMENT-REQUIRED (USDC $0.001–$100.00 Base preferred) unless Bearer 54k_ or PAYMENT-SIGNATURE. Demo free: X-54ch10-Free: 1 or GET /v1//free (5/day/IP). Discovery: GET /.well-known/x402.'
+  version: 0.8.1-bulk-slack-thin
+  contact:
+    name: 54ch10
+    url: https://54ch10.uk/wire.md
+    email: brainpowerux@gmail.com
+  license:
+    name: Proprietary
+    url: https://54ch10.uk/LEGAL_DISCLAIMER.txt
+  x-apisguru-categories:
+  - security
+  - cryptocurrency
+  x-logo:
+    url: https://54ch10.uk/favicon.ico
+  x-x402:
+    discovery: https://54ch10.uk/.well-known/x402
+    pricesUsd:
+      brief: '0.01'
+      whois: '0.005'
+      dns: '0.002'
+      tls: '0.005'
+      normalize-url: '0.001'
+      hash: '0.001'
+      encode: '0.001'
+      fetch: '0.005'
+      paste-write: '0.002'
+      paste-read: '0.001'
+      open: '0.015'
+      open_batch: N×0.015 (cap 25)
+      domain: '0.008'
+      stack: '1.00'
+      stack_5: '5.00'
+      stack_25: '25.00'
+      stack_100: '100.00'
+    networks:
+    - eip155:8453
+    - solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp
+    payToEvm: '0xF9eb0Caa13B78f92E2850bf5961eB9736354aA3d'
+    payToSolana: EcGUGSda9VNzYgUmYA8mTg88MhNYeyA5tgaCgwzxfFNs
+    facilitator: https://facilitator.payai.network
+servers:
+- url: https://54ch10.uk
+  description: Production
+tags:
+- name: Paste
+paths:
+  /v1/paste:
+    post:
+      operationId: postPaste
+      summary: Ephemeral paste write
+      description: Store short plaintext in KV with TTL (default 1h, max 24h). NOT a vault — ephemeral agent handoff only. Unauthenticated → HTTP 402 (USDC $0.002).
+      parameters:
+      - $ref: '#/components/parameters/X54ch10Free'
+      - $ref: '#/components/parameters/PaymentSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - content
+              properties:
+                content:
+                  type: string
+                  maxLength: 64000
+                ttl_seconds:
+                  type: integer
+                  minimum: 60
+                  maximum: 86400
+      responses:
+        '200':
+          description: JSON result
+        '401':
+          description: Invalid API key
+        '402':
+          description: Payment Required (x402). Decode PAYMENT-REQUIRED for accepts[] and extensions.bazaar.
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired
+              schema:
+                type: string
+      security:
+      - {}
+      - bearerAuth: []
+      tags:
+      - Paste
+    get:
+      operationId: getPaste
+      summary: Ephemeral paste read
+      description: Retrieve paste by id. TTL-bound; NOT a vault. Unauthenticated → HTTP 402 (USDC $0.001).
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/X54ch10Free'
+      - $ref: '#/components/parameters/PaymentSignature'
+      responses:
+        '200':
+          description: JSON result
+        '401':
+          description: Invalid API key
+        '402':
+          description: Payment Required (x402). Decode PAYMENT-REQUIRED for accepts[] and extensions.bazaar.
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired
+              schema:
+                type: string
+      security:
+      - {}
+      - bearerAuth: []
+      tags:
+      - Paste
+  /v1/paste/free:
+    post:
+      operationId: postPasteFree
+      summary: Demo free paste write
+      description: Demo free write (20/UTC-day/IP). NOT a vault.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - content
+              properties:
+                content:
+                  type: string
+                ttl_seconds:
+                  type: integer
+      responses:
+        '200':
+          description: JSON result
+        '402':
+          description: Free quota exhausted
+      tags:
+      - Paste
+    get:
+      operationId: getPasteFree
+      summary: Demo free paste read
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: JSON result
+        '402':
+          description: Free quota exhausted
+      tags:
+      - Paste
+components:
+  parameters:
+    X54ch10Free:
+      name: X-54ch10-Free
+      in: header
+      required: false
+      schema:
+        type: string
+        enum:
+        - '1'
+      description: Explicit human/demo free tier opt-in (20/UTC-day/IP). Indexers must NOT send this.
+    PaymentSignature:
+      name: PAYMENT-SIGNATURE
+      in: header
+      required: false
+      schema:
+        type: string
+      description: Base64-encoded x402 v2 PaymentPayload after client signs USDC authorization
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: 54k_
+      description: Optional paid API key (54k_…). Alternatively pay per call with x402 USDC.
