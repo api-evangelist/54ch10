@@ -182,3 +182,9 @@ components:
       scheme: bearer
       bearerFormat: 54k_
       description: Optional paid API key (54k_…). Alternatively pay per call with x402 USDC.
+x-provenance:
+  method: harvested
+  publisher: 54ch10
+  source: https://54ch10.uk/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
