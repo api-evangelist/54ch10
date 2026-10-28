@@ -63,3 +63,76 @@
 >
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
+
+54ch10 serves pre-interact risk briefs for wallet addresses, tokens and URLs — phishing, scam, honeypot and URL-reputation heuristics an agent can call BEFORE it signs, approves, bridges or opens a dapp URL. A brief returns a 0–100 score where higher is more concerning, a band, flags, a summary and the sources behind it, so a caller can gate its next tool call on policy: refuse on critical, require human confirmation on elevated. The provider describes it as analytics-only and explicitly not financial, legal or investment advice. Four operations over OpenAPI 3.0, bearer authenticated, with a free tier and an x402 machine-payment surface on Base.
+
+**Areas:** wallet-risk · Phishing · Scam Detection · url reputation · x402
+
+## 54ch10 on APIs.io
+
+Everything profiled for 54ch10 is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/54ch10/](https://apis.io/providers/54ch10/)** — or go straight to one of the APIs or properties below.
+
+### APIs (3)
+
+- [54ch10 Brief API](https://apis.io/apis/54ch10/54ch10-brief-api/) — Pre-interact risk briefs for addresses, tokens and URLs. GET /v1/brief and a free tier at /v1/brief/free, plus /health and an x402 discovery document.…
+- [54ch10 Health API](https://apis.io/apis/54ch10/54ch10-health-api/) — The Health API from 54ch10 — 1 operation(s) for health.
+- [54ch10 .well Known API](https://apis.io/apis/54ch10/54ch10-well-known-api/) — The .well Known API from 54ch10 — 1 operation(s) for .well known.
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://54ch10.uk/)
+
+## API Evangelist rating
+
+**Kin Score 17.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 53.6 |
+| Contract quality | 46.1 |
+| Contract governance | 0.0 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 16.7 |
+| Access clarity | 0.0 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 0.0** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/54ch10/](https://apis.io/providers/54ch10/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for 54ch10: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/54ch10/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
