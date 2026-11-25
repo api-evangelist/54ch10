@@ -66,17 +66,40 @@
 
 54ch10 serves pre-interact risk briefs for wallet addresses, tokens and URLs — phishing, scam, honeypot and URL-reputation heuristics an agent can call BEFORE it signs, approves, bridges or opens a dapp URL. A brief returns a 0–100 score where higher is more concerning, a band, flags, a summary and the sources behind it, so a caller can gate its next tool call on policy: refuse on critical, require human confirmation on elevated. The provider describes it as analytics-only and explicitly not financial, legal or investment advice. Four operations over OpenAPI 3.0, bearer authenticated, with a free tier and an x402 machine-payment surface on Base.
 
-**Areas:** wallet-risk · Phishing · Scam Detection · url reputation · x402
+**Areas:** Wallet Risk · Phishing · Scam Detection · url reputation · x402
 
 ## 54ch10 on APIs.io
 
 Everything profiled for 54ch10 is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/54ch10/](https://apis.io/providers/54ch10/)** — or go straight to one of the APIs or properties below.
 
-### APIs (3)
+### APIs (16)
 
 - [54ch10 Brief API](https://apis.io/apis/54ch10/54ch10-brief-api/) — Pre-interact risk briefs for addresses, tokens and URLs. GET /v1/brief and a free tier at /v1/brief/free, plus /health and an x402 discovery document.…
 - [54ch10 Health API](https://apis.io/apis/54ch10/54ch10-health-api/) — The Health API from 54ch10 — 1 operation(s) for health.
 - [54ch10 .well Known API](https://apis.io/apis/54ch10/54ch10-well-known-api/) — The .well Known API from 54ch10 — 1 operation(s) for .well known.
+- [54ch10 DNS API](https://apis.io/apis/54ch10/54ch10-dns-api/) — The DNS API from 54ch10 — 2 operation(s) for dns.
+- [54ch10 Domain API](https://apis.io/apis/54ch10/54ch10-domain-api/) — The Domain API from 54ch10 — 2 operation(s) for domain.
+- [54ch10 Encode API](https://apis.io/apis/54ch10/54ch10-encode-api/) — The Encode API from 54ch10 — 2 operation(s) for encode.
+- [54ch10 Feedback API](https://apis.io/apis/54ch10/54ch10-feedback-api/) — The Feedback API from 54ch10 — 1 operation(s) for feedback.
+- [54ch10 Fetch API](https://apis.io/apis/54ch10/54ch10-fetch-api/) — The Fetch API from 54ch10 — 2 operation(s) for fetch.
+- [54ch10 Hash API](https://apis.io/apis/54ch10/54ch10-hash-api/) — The Hash API from 54ch10 — 2 operation(s) for hash.
+- [54ch10 Normalize Url API](https://apis.io/apis/54ch10/54ch10-normalize-url-api/) — The Normalize Url API from 54ch10 — 2 operation(s) for normalize url.
+- [54ch10 Open API](https://apis.io/apis/54ch10/54ch10-open-api/) — The Open API from 54ch10 — 3 operation(s) for open.
+- [54ch10 Paste API](https://apis.io/apis/54ch10/54ch10-paste-api/) — The Paste API from 54ch10 — 2 operation(s) for paste.
+- [54ch10 Stack API](https://apis.io/apis/54ch10/54ch10-stack-api/) — The Stack API from 54ch10 — 1 operation(s) for stack.
+- [54ch10 Stats API](https://apis.io/apis/54ch10/54ch10-stats-api/) — The Stats API from 54ch10 — 1 operation(s) for stats.
+- [54ch10 Tls API](https://apis.io/apis/54ch10/54ch10-tls-api/) — The Tls API from 54ch10 — 2 operation(s) for tls.
+- [54ch10 Whois API](https://apis.io/apis/54ch10/54ch10-whois-api/) — The Whois API from 54ch10 — 2 operation(s) for whois.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [54ch10 API Rules](https://apis.io/rules/54ch10/54ch10-rules/)
 
 ## Where to find this API
 
@@ -86,40 +109,46 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 17.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+**Kin Score 19.8** — emerging · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
-| Discoverability | 53.6 |
-| Contract quality | 46.1 |
-| Contract governance | 0.0 |
+| Discoverability | 60.7 |
+| Contract quality | 49.5 |
+| Contract governance | 13.6 |
 | Operational transparency | 0.0 |
 | Developer ergonomics | 16.7 |
 | Access clarity | 0.0 |
 
-**Agent readiness 17.9** — agent-aware
+**Agent readiness 19.3** — agent-aware
 
 | Agent-readiness dimension | Result |
 |---|---|
 | Spec Presence | yes |
 | Agentic Access | — |
-| Reversibility Documented | na |
+| Reversibility Documented | — |
 | MCP Server | — |
 | Auth Clarity | bearer (partial credit) |
-| Idempotency | na |
+| Idempotency | — |
 | Error Semantics | — |
-| OpenAPI Examples | — |
+| OpenAPI Examples | partial |
 | Rate Limit Signal | — |
 | Event Surface Described | — |
 | Agent Skills | — |
 | Well Known Catalog | — |
 | Consent Identity | — |
 | Agent Card | — |
-| Dry Run Mode | na |
+| Dry Run Mode | — |
 | Delegated Identity | — |
 | Protected Resource Metadata | — |
 | Dynamic Client Registration | — |
 | Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
 **Regulatory alignment 0.0** — Payments
 
